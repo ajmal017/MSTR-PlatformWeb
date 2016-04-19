@@ -1,0 +1,11 @@
+Dear all,
+
+Please push related code in the program, sorting by "Market View", "Risk Management" and "Front-End".
+In the subfolder, please wrap your code logically and give a vivid name for a better illumination.
+
+I have pushed an empty folder named Integration for final system integration on the basis of (still to be decided, probably .Net or RabbitMQ, if necessary).
+
+Thanks.
+
+Best regards,
+Myron
