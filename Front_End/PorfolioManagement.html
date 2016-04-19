@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+<>
+    <title>Market View</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="support/jquery/jquery-2.1.0.min.js"></script>
+    <link href="support/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <script src="support/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+    <!--        <link rel="stylesheet" href="support/bootstrap-4.0/css/bootstrap.css">
+            <script src="support/bootstrap-4.0/js/bootstrap.js"></script>-->
+
+    <link href="support/css/dashboard.css" rel="stylesheet">
+    <link href="support/css/Portfolio%20management.css" rel="stylesheet">
+    <!--<link href="support/css/strategy.css" rel="stylesheet">-->
+
+
+    <script src="support/echarts.min.js"></script>
+    <script src="js/Connect.js"></script>
+    <script src="js/Strategy.js"></script>
+
+
+    <script src="js/Connect.js"></script>
+
+    <script type='text/javascript'>
+
+        $(function() {
+            DrawPie();
+            var $div_li = $("div.tab-menu ul li");
+            $div_li.click(function(){
+                $(this).addClass('selected').siblings().removeClass('selected');
+                var index=$div_li.index(this);
+                $("div.tab-box > div").eq(index).addClass('true').siblings().removeClass("true");
+            })
+        })
+
+    </script>
+
+
+
+</head>
+<body>
+<nav class="navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Analyse</a>
+        </div>
+        <div class="navbar-form navbar-left">
+            <div class="form-group">
+                <input type="text" id="search"  class="form-control" placeholder="Search">
+            </div>
+            <button id="search-btn" class="btn btn-success">Search</button>
+        </div>
+        <!--                <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Market View</a></li>
+                                <li><a href="#">Strategy</a></li>
+                                <li><a href="#">Trading</a></li>
+                                <li><a href="#">Profolio management</a></li>
+                            </ul>
+
+                        </div>-->
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-sm-3 sidebar">
+            <ul id="sidebar" class="nav nav-sidebar">
+              <li><a href="./MarketInfomation.html">Market Information</a></li>
+              <li><a href="./MarketView.html">Market View</a></li>
+              <li><a href="./Strategy.html">Strategy</a></li>
+              <li><a href="./Trading.html">Trading</a></li>
+              <li><a href="./PorfolioManagement.html" class="list-group-item active">Profolio management</a></li>
+              <li><a href="./RiskManagement.html">Risk management</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            <div class="col-container">
+                <div class="tab-menu">
+                    <ul>
+                        <li class="selected">投资组合</li>
+                        <li>今日订单</li>
+                        <li>待成交订单</li>
+                        <li>成交记录</li>
+
+                    </ul>
+                </div>
+                <div class="col-xs-12">
+
+                    <div class="tab-box">
+                        <div class="true" >
+                            <div class="col-xs-13">
+                                <p>账户净现金结余:</p>
+                                <p>投资组合总值:</p>
+                                <p>可动用资金:</p>
+                                <p>P&L:</p>
+
+                            </div>
+                            <div class="col-xs-14">
+                                <p>10000.00</p>
+                                <p>20.345</p>
+                                <p>789087.345</p>
+                                <p>23424234.90</p>
+                            </div>
+                            <div id="main" style="height:400px"></div>
+
+                        </div>
+                        <div>
+                            <table>
+                                <th>
+                                    <td>单号</td>
+                                    <td>开单时间</td>
+                                    <td>产品</td>
+                                    <td>手数</td>
+                                    <td>类型</td>
+                                    <td>价格</td>
+                                    <td>止损</td>
+                                    <td>最新价格</td>
+                                    <td>佣金</td>
+                                    <td>盈亏</td>
+                                </th>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+                        <div>
+                            <table>
+                                <th>
+                                <td>单号</td>
+                                <td>开单时间</td>
+                                <td>产品</td>
+                                <td>手数</td>
+                                <td>类型</td>
+                                <td>价格</td>
+                                <td>止损</td>
+                                <td>最新价格</td>
+                                <td>佣金</td>
+                                <td>盈亏</td>
+                                </th>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                        <div>
+                            <table>
+                                <th>
+                                <td>单号</td>
+                                <td>开单时间</td>
+                                <td>产品</td>
+                                <td>手数</td>
+                                <td>类型</td>
+                                <td>价格</td>
+                                <td>止损</td>
+                                <td>最新价格</td>
+                                <td>佣金</td>
+                                <td>盈亏</td>
+                                </th>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+                                <tr>
+                                    <td>15177</td>
+                                    <td>2012-10-22 05:23</td>
+                                    <td>AUDCAD</td>
+                                    <td>0.03</td>
+                                    <td>sell</td>
+                                    <td>1.02427</td>
+                                    <td>0.00</td>
+                                    <td>+0.232</td>
+                                    <td>9.3434</td>
+                                    <td>7</td>
+                                    <td>+0.232</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>Trading</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="support/jquery/jquery-2.1.0.min.js"></script>
+        <link href="support/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href="support/NewsTickers/assets/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+        <script src="support/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+        <script src="support/NewsTickers/assets/js/bootstrap.js"></script>
+
+        <!--        <link rel="stylesheet" href="support/bootstrap-4.0/css/bootstrap.css">
+                <script src="support/bootstrap-4.0/js/bootstrap.js"></script>-->
+        <script src="support/NewsTickers/jquery.newsTicker.min.js"></script>
+        <link href="support/NewsTickers/assets/css/main.css" rel="stylesheet">
+
+        <link href="support/css/dashboard.css" rel="stylesheet">
+        <!--<script src="support/jquery.fullPage.min.js"></script>-->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="support/css/font-awesome.min.css">
+
+        <script src="support/echarts.min.js"></script>
+
+
+        <script src="js/Connect.js"></script>
+        <script src="js/init.js"></script>
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                DrawPullCall();
+                DrawFuture();
+
+                $("#stock-search-btn").click(function () {
+
+                    connect("MonteCarlo.php", {
+                        type: "USER_SEARCH_STOCK",
+                        data: {
+                            s_id: $("#stock-search").val()
+                        }
+                    }, function (obj) {
+//                        alert(JSON.stringify(obj.Kchart.data));
+                        ShowStock(obj);
+                    });
+                });
+
+
+
+            });
+
+
+
+        </script>
+        <style type="text/css">
+            .side {
+                padding: 20px;
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+            select {
+                padding:3px;
+                margin: 0;
+                -webkit-border-radius:4px;
+                -moz-border-radius:4px;
+                border-radius:4px;
+                -webkit-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+                -moz-box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+                box-shadow: 0 3px 0 #ccc, 0 -1px #fff inset;
+                background: #f8f8f8;
+                color:#888;
+                border:none;
+                outline:none;
+                display: inline-block;
+                -webkit-appearance:none;
+                -moz-appearance:none;
+                appearance:none;
+                cursor:pointer;
+            }
+
+            /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+            @media screen and (-webkit-min-device-pixel-ratio:0) {
+                select {padding-right:18px}
+            }
+            @media screen and (min-width: 768px) {
+                .nav-collapse{
+                    display:none
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"  aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="./MarketInfomation.html">Analyse</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav nav-collapse">
+                        <li><a href="./MarketInfomation.html">Market Information</a></li>
+                        <li><a href="./MarketView.html">Market View</a></li>
+                        <li><a href="#">Strategy</a></li>
+                        <li class="active"><a href="./Trading.html">Trading</a></li>
+                        <li><a href="#">Porfolio Management</a></li>
+
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" id="search"  class="form-control" placeholder="Search">
+                        </div>
+                        <button id="search-btn" class="form-control btn-success">Search</button>
+                    </form>
+
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a id="Team" href="#" style="">Inspired By ASTRI Team</a></li>
+                        <li><a id="Author" href="#" style="margin-right: 5px; font-family: arial,STHeiti,pmingliu,sans-serif!important;font-size: 9px;font-style:italic">-0ostreamo0</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row main">
+                <div class="col-md-12 col-xs-12">                    
+                    <div class="row" style="background-color: #FFF">
+                        <div class="row col-md-offset-2">
+                            <div class="container">
+                                <div style="font-size: 30px; margin-top: 5px; margin-left: 20px">Strategy</div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2" style="padding-top: 20px">
+                                <div class="table-responsive">
+                                    <table class="table table-hover" style="text-align: center">
+                                        <tr class="active">
+                                            <td>name</td>
+                                            <td>L/S</td>
+                                            <td>Quant</td>
+                                            <td>Price</td>
+                                        </tr>
+                                        <tr class="">
+                                            <td>1</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td ></td>
+                                        </tr>
+                                        <tr class="">
+                                            <td>2</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="">
+                                            <td>3</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr class="">
+                                            <td>4</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--Strategy-Table-->
+                    </div>                   
+                </div>
+            </div>
+            <!--Strategy-->
+            <div class="row main">
+
+                <div class="col-md-6 col-xs-12">
+                    <div class="row" style="background-color: #FFF">
+                        <div class="container">
+                            <div style="font-size: 30px; margin-top: 5px; margin-left: 20px">Trading Detail</div>
+                        </div>
+                        <div class="table table-responsive" style="padding: 30px 20px 10px 20px">
+                            <table class="table" style="text-align: center">
+                                <tr class="active">
+                                    <td></td>
+                                    <td style="width: 40%">Buy</td>
+                                    <td style="width: 40%">Sell</td>
+                                </tr>
+                                <tr>
+                                    <td>Order Type</td>
+                                    <td>
+                                        <select style="width: 100%">
+                                            <option value="">Market</option>
+                                            <option value="">Limited</option>
+                                            <option value="">Stop to buy</option>
+                                            <option value="">All or none</option>
+                                            <option value="">Good till day</option>
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <select style="width: 100%">
+                                            <option value="">Market</option>
+                                            <option value="">Limited</option>
+                                            <option value="">Stop to buy</option>
+                                            <option value="">All or none</option>
+                                            <option value="">Good till day</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Market</td>
+                                    <td>
+                                        <select style="width: 100%">
+                                            <option value="">HK</option>
+                                            <option value="">Shanghai</option>
+                                            <option value=""></option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select style="width: 100%">
+                                            <option value="">HK</option>
+                                            <option value="">Shanghai</option>
+                                            <option value=""></option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>Market</td>
+                                    <td><input type="text" class="form-control"/></td>
+                                    <td><input type="text" class="form-control"/></td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Price</td>
+                                    <td><input type="text" class="form-control"/></td>
+                                    <td><input type="text" class="form-control"/></td>
+                                    
+
+                                </tr>
+                                <tr>
+                                    <td>Quant</td>
+                                    <td><input type="text" class="form-control"/></td>
+                                    <td><input type="text" class="form-control"/></td>
+                                    
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="col-md-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 col-xs-12" style="padding-top: 30%">
+                            <button class="btn btn-primary" style="width: 100%">Cancle</button>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 col-xs-12" style="padding-top: 20px">
+                            <button class="btn btn-success" style="width: 100%">Trade</button>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </body>
+</html>

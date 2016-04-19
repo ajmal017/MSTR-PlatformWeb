@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+<head>
+    <title>Strategy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script src="support/jquery/jquery-2.1.0.min.js"></script>
+    <link href="support/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <script src="support/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+    <!--        <link rel="stylesheet" href="support/bootstrap-4.0/css/bootstrap.css">
+            <script src="support/bootstrap-4.0/js/bootstrap.js"></script>-->
+
+
+    <link href="support/css/dashboard.css" rel="stylesheet">
+
+    <!--<link href="support/css/sb-admin.css" rel="stylesheet">-->
+
+
+    <script src="support/echarts.min.js"></script>
+    <script src="js/Connect.js"></script>
+    <script src="js/Strategy.js"></script>
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            DrawPie();
+            DrawLine();
+
+
+
+        });
+
+    </script>
+</head>
+<body>
+<nav class="navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Analysis</a>
+        </div>
+        <div class="navbar-form navbar-left">
+            <div class="form-group">
+                <input type="text" id="search"  class="form-control" placeholder="Search">
+            </div>
+            <button id="search-btn" class="btn btn-success">Search</button>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm-3 sidebar">
+            <ul id="sidebar" class="nav nav-sidebar">
+                <li><a href="#">Market Information</a></li>
+                <li><a href="MarketView.html" class="active">Market View</a></li>
+                <li><a href="Strategy old.html" class="active">Strategy</a></li>
+                <li><a href="#">Trading</a></li>
+                <li><a href="Portfolio%20management.html">Profolio management</a></li>
+                <li><a href="Risk%20management.html">Risk management</a></li>
+            </ul>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+
+            <div class="col-md-6" style="display: none">
+                <div id="main" style="height:400px"></div>
+
+            </div>
+            <div class="col-md-6">
+                <div id="frontier" style="height:400px"></div>
+
+            </div>
+
+
+            <div class="col-md-12" style="margin-top: 40px;display: none">
+                <div class="panel panel-default" style="text-align: center">
+                    <div class="panel-heading" ><h4 id="T-head">Strategy 5</h4></div>
+                    <table id="detail-list" class="table table-striped">
+                        <tr>
+                            <td><strong>Name</strong></td>
+                            <td><strong>Quantity</strong></td>
+                            <td><strong>Value</strong></td>
+                        </tr>
+                        <tr>
+                            <td>SSH</td>
+                            <td>1</td>
+                            <td>100000</td>
+                        </tr>
+                        <tr>
+                            <td>CCt</td>
+                            <td>2</td>
+                            <td>1202020</td>
+                        </tr>
+                        <tr>
+                            <td>UTC</td>
+                            <td>3</td>
+                            <td>3450000</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>

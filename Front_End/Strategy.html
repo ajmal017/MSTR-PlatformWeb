@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+<head>
+    <title>Market View</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="support/jquery/jquery-2.1.0.min.js"></script>
+    <link href="support/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <script src="support/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+    <!--        <link rel="stylesheet" href="support/bootstrap-4.0/css/bootstrap.css">
+            <script src="support/bootstrap-4.0/js/bootstrap.js"></script>-->
+
+    <link href="support/css/dashboard.css" rel="stylesheet">
+    <link href="support/css/strategy.css" rel="stylesheet">
+
+    <script src="js/Connect.js"></script>
+
+    <script type='text/javascript'>
+
+    $(function() {
+        var $div_li = $("div.tab-menu ul li");
+        $div_li.click(function(){
+          $(this).addClass('selected').siblings().removeClass('selected');
+            var index=$div_li.index(this);
+            $("div.tab-box > div").eq(index).addClass('true').siblings().removeClass("true");
+        })
+    })
+
+    </script>
+
+
+</head>
+<body>
+<nav class="navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Analyse</a>
+        </div>
+        <div class="navbar-form navbar-left">
+            <div class="form-group">
+                <input type="text" id="search"  class="form-control" placeholder="Search">
+            </div>
+            <button id="search-btn" class="btn btn-success">Search</button>
+        </div>
+        <!--                <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Market View</a></li>
+                                <li><a href="#">Strategy</a></li>
+                                <li><a href="#">Trading</a></li>
+                                <li><a href="#">Profolio management</a></li>
+                            </ul>
+
+                        </div>-->
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-sm-3 sidebar">
+            <ul id="sidebar" class="nav nav-sidebar">
+                <li><a href="./MarketInfomation.html">Market Information</a></li>
+                <li><a href="./MarketView.html">Market View</a></li>
+                <li><a href="./Strategy.html" class="list-group-item active">Strategy</a></li>
+                <li><a href="./Trading.html">Trading</a></li>
+                <li><a href="./PorfolioManagement.html">Profolio management</a></li>
+                <li><a href="./RiskManagement.html">Risk management</a></li>
+
+
+                <!-- <a href="./MarketInfomation.html" class="list-group-item active">
+                    Market Information
+                </a>
+                <a href="#" class="list-group-item">Market View</a>
+                <a href="./Strategy.html" class="list-group-item">Strategy</a>
+                <a href="./Trading.html" class="list-group-item">Trading</a>
+                <a href="./RiskManagement.html" class="list-group-item">Risk Management</a>
+                <a href="./PorfolioManagement.html" class="list-group-item">Porfolio Management</a> -->
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="col-container">
+                <div class="col-header" >
+                    <div class="col-hd-1">
+                        九宫格
+                    </div>
+                    <div class="col-hd-2">
+                        Strategy
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="tab-menu">
+                        <ul>
+                            <li class="selected">1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                        </ul>
+                    </div>
+                    <div class="tab-box">
+                        <div class="true" >
+                            <table>
+                                <th>
+
+                                    <td>Name</td>
+                                    <td>long/short</td>
+                                    <td>数量</td>
+                                    <td>价格</td>
+                                    <td>value</td>
+                                    <td>详情</td>
+                                    <td>是否选择交易</td>
+                                </th>
+                                <tr>
+                                    <td>strategy1</td>
+                                    <td>HSI</td>
+                                    <td>long</td>
+                                    <td>10</td>
+                                    <td>9.780</td>
+                                    <td>500</td>
+                                    <td><a href="detail%20information.html"><input type="button" value="点击显示详情"/></a></td>
+                                    <td><input type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>strategy2</td>
+                                    <td>HSI</td>
+                                    <td>long</td>
+                                    <td>10</td>
+                                    <td>9.780</td>
+                                    <td>500</td>
+                                    <td><a href="detail%20information.html"><input type="button" value="点击显示详情"/></a></td>
+                                    <td><input type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>strategy3</td>
+                                    <td>HSI</td>
+                                    <td>long</td>
+                                    <td>10</td>
+                                    <td>9.780</td>
+                                    <td>500</td>
+                                    <td><a href="detail%20information.html"><input type="button" value="点击显示详情"/></a></td>
+                                    <td><input type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>strategy4</td>
+                                    <td>HSI</td>
+                                    <td>long</td>
+                                    <td>10</td>
+                                    <td>9.780</td>
+                                    <td>500</td>
+                                    <td><a href="detail%20information.html"><input type="button" value="点击显示详情"/></a></td>
+                                    <td><input type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>strategy5</td>
+                                    <td>HSI</td>
+                                    <td>long</td>
+                                    <td>10</td>
+                                    <td>9.780</td>
+                                    <td>500</td>
+                                    <td><a href="detail%20information.html"><input type="button" value="点击显示详情"/></a></td>
+                                    <td><input type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>strategy6</td>
+                                    <td>HSI</td>
+                                    <td>long</td>
+                                    <td>10</td>
+                                    <td>9.780</td>
+                                    <td>500</td>
+                                    <td><a href="detail%20information.html"><input type="button" value="点击显示详情"/></a></td>
+                                    <td><input type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>strategy6</td>
+                                    <td>HSI</td>
+                                    <td>long</td>
+                                    <td>10</td>
+                                    <td>9.780</td>
+                                    <td>500</td>
+                                    <td><a href="detail%20information.html"><input type="button" value="点击显示详情"/></a></td>
+                                    <td><input type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>strategy6</td>
+                                    <td>HSI</td>
+                                    <td>long</td>
+                                    <td>10</td>
+                                    <td>9.780</td>
+                                    <td>500</td>
+                                    <td><a href="detail%20information.html"><input type="button" value="点击显示详情"/></a></td>
+                                    <td><input type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>strategy6</td>
+                                    <td>HSI</td>
+                                    <td>long</td>
+                                    <td>10</td>
+                                    <td>9.780</td>
+                                    <td>500</td>
+                                    <td><a href="detail%20information.html"><input type="button" value="点击显示详情"/></a></td>
+                                    <td><input type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>strategy6</td>
+                                    <td>HSI</td>
+                                    <td>long</td>
+                                    <td>10</td>
+                                    <td>9.780</td>
+                                    <td>500</td>
+                                    <td><a href="detail%20information.html"><input type="button" value="点击显示详情"/></a></td>
+                                    <td><input type="checkbox"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                            2
+                        </div>
+                        <div>
+                            3
+                        </div>
+                        <div>
+                            4
+                        </div>
+                        <div>
+                            5
+                        </div>
+                        <div>
+                            6
+                        </div>
+                        <div>
+                            7
+                        </div>
+                        <div>
+                            8
+                        </div>
+                        <div>
+                            9
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

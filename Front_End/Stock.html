@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>DEMO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <script src="support/jquery/jquery-2.1.0.min.js"></script>
+        <link href="support/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>    
+        <script src="support/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+        <!--        <link rel="stylesheet" href="support/bootstrap-4.0/css/bootstrap.css">
+                <script src="support/bootstrap-4.0/js/bootstrap.js"></script>-->
+
+
+        <link href="support/css/dashboard.css" rel="stylesheet">
+
+        <!--<link href="support/css/sb-admin.css" rel="stylesheet">-->
+
+
+        <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+        <script src="js/Connect.js"></script>
+        <script src="js/init.js"></script>
+        <script type='text/javascript'>
+            $(document).ready(function () {
+
+
+                $("#search-btn").click(function () {
+                    connect("MonteCarlo.php", {
+                        type: "USER_SEARCH_STOCK",
+                        data: {
+                            s_id: $("#search").val()
+                        }
+                    }, function (obj) {
+                        var kdata = obj.Kchart.data;
+                        var kdate = obj.Kchart.date;
+                        ShowStock(obj);
+
+                        require.config({
+                            paths: {
+                                echarts: 'http://echarts.baidu.com/build/dist'
+                            }
+                        });
+                        
+                        
+                        
+                        require(
+                                [
+                                    'echarts',
+                                    'echarts/chart/k' // 使用柱状图就加载bar模块，按需加载
+                                ],
+                                function (ec) {
+                                    // 基于准备好的dom，初始化echarts图表
+                                    myChart = ec.init(document.getElementById('K-char'));
+                                    // 为echarts对象加载数据 
+                                    setKchart(myChart, kdata, kdate, obj);
+                                }
+                        );
+                    });
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <nav class="navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Analysis</a>
+                </div>
+                <div class="navbar-form navbar-left">
+                    <div class="form-group" >
+                        <input type="text" id="search" class="form-control" placeholder="Search">
+                    </div>
+                    <button id="search-btn" class="btn btn-success">Search</button>
+                </div>
+<!--                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Market View</a></li>
+                        <li><a href="#">Strategy</a></li>
+                        <li><a href="#">Trading</a></li>
+                        <li><a href="#">Profolio management</a></li>
+                    </ul>
+
+                </div>-->
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-sm-3 sidebar">
+                    <ul id="sidebar" class="nav nav-sidebar">
+                        <li><a href="MarketView.html" class="active">Market View</a></li>
+                        <li><a href="Strategy.html" class="active">Strategy</a></li>
+                        <li><a href="#">Trading</a></li>
+                        <li><a href="#">Profolio management</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">       
+                    <div class="row" style="margin-top: 50px">
+                        <div class="col-xs-12">
+                            <span id="s-name" style="font: bold 20px arial"></span>
+                            <span id="s-id" style="font: bold 20px arial"></span>
+                        </div>
+                        <div class="col-xs-12">
+                            <span id="s-price" style="font: bold 30px arial"></span>
+                            <span id="s-change" style="font: bold 20px arial; margin-left: 10px"></span>
+                            <span id="s-rate" style="font: bold 20px arial"></span>
+                            <span id="s-time" style="font-family: arial,STHeiti,pmingliu,sans-serif!important;font-size: 8px;font-style:italic"></span>
+                        </div>
+                        <div class="col-xs-12">
+                            <div id="line-char"></div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div id="K-char" style="height:400px; width: auto; margin-top: 40px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </body>
+</html>

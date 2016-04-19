@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>Market View</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="support/jquery/jquery-2.1.0.min.js"></script>
+        <link href="support/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+        <link href="support/NewsTickers/assets/css/bootstrap.css" type="text/css" rel="stylesheet"/>
+        <script src="support/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+        <script src="support/NewsTickers/assets/js/bootstrap.js"></script>
+
+        <!--        <link rel="stylesheet" href="support/bootstrap-4.0/css/bootstrap.css">
+                <script src="support/bootstrap-4.0/js/bootstrap.js"></script>-->
+        <script src="support/NewsTickers/jquery.newsTicker.min.js"></script>
+        <link href="support/NewsTickers/assets/css/main.css" rel="stylesheet">
+
+        <link href="support/css/dashboard.css" rel="stylesheet">
+        <!--<script src="support/jquery.fullPage.min.js"></script>-->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="support/css/font-awesome.min.css">
+
+        <script src="support/echarts.min.js"></script>
+
+
+        <script src="js/Connect.js"></script>
+        <script src="js/init.js"></script>
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                DrawPullCall();
+                DrawFuture();
+
+                $("#stock-search-btn").click(function () {
+
+                    connect("MonteCarlo.php", {
+                        type: "USER_SEARCH_STOCK",
+                        data: {
+                            s_id: $("#stock-search").val()
+                        }
+                    }, function (obj) {
+//                        alert(JSON.stringify(obj.Kchart.data));
+                        ShowStock(obj);
+                    });
+                });
+
+
+
+            });
+
+
+
+        </script>
+        <style type="text/css">
+            .side {
+                padding: 20px;
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+            @media screen and (max-width: 768px) {
+                .side{
+                    display:none
+                }
+            }
+            @media screen and (min-width: 768px) {
+                .nav-collapse{
+                    display:none
+                }
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"  aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="./MarketInfomation.html">Analyse</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav nav-collapse">
+                        <!-- <li><a href="./MarketInfomation.html">Market Information</a></li>
+                        <li class="active"><a href="./MarketView.html">Market View</a></li>
+                        <li ><a href="#">Strategy</a></li>
+                        <li ><a href="./Trading.html">Trading</a></li>
+                        <li ><a href="#">Porfolio Management</a></li> -->
+
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" id="search"  class="form-control" placeholder="Search">
+                        </div>
+                        <button id="search-btn" class="form-control btn-success">Search</button>
+                    </form>
+
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a id="Team" href="#" style="">Inspired By ASTRI Team</a></li>
+                        <li><a id="Author" href="#" style="margin-right: 5px; font-family: arial,STHeiti,pmingliu,sans-serif!important;font-size: 9px;font-style:italic">-0ostreamo0</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class=" col-md-2 col-xs-12 side">
+                    <div class="list-group">
+                        <a href="./MarketInfomation.html" class="list-group-item">
+                            Market Information
+                        </a>
+                        <a href="#" class="list-group-item active">Market View</a>
+                        <a href="./Strategy.html" class="list-group-item">Strategy</a>
+                        <a href="./Trading.html" class="list-group-item">Trading</a>
+                        <a href="./RiskManagement.html" class="list-group-item">Risk Management</a>
+                        <a href="./PorfolioManagement.html" class="list-group-item">Porfolio Management</a>
+                    </div>
+                </div>
+                <div class="col-md-10 col-xs-12 main">
+                    <div class="row" style="background-color: #FFF">
+                        <div class="col-md-6 col-xs-12">
+                            <div id="PullCall"  style="height:400px; width: auto; margin-top: 40px">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div id="future"  style="height:400px; width: auto; margin-top: 40px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-12 main" >
+                    <div class="row">
+                        <div class="col-md-10 col-xs-12">
+                            <div class="panel panel-default" style="width: 100%; height: auto">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title" style="text-align: center">九宫格</h3>
+                                </div>
+                                <div class="panel-body" style="height: auto; width: auto; text-align: center">
+                                    <div class="row" style="margin: 0px 10px 0px 10px">
+                                        <a class="list-group-item list-group-item-success col-md-4" style=" height: 200px">
+                                            <h4 class="list-group-item-heading">Strategy 1</h4>
+                                            <p class="list-group-item-text">Strategy 1
+                                                <span class="list-group-item-text" style="float: right">1</span>
+                                            </p>
+                                        </a>
+                                        <a class="list-group-item col-md-4" style=" height: 200px">
+                                            <h4 class="list-group-item-heading">Strategy 2</h4>
+                                            <p class="list-group-item-text">Strategy 2
+                                                <span class="list-group-item-text" style="float: right">2</span>
+                                            </p>
+                                        </a>
+                                        <a class="list-group-item list-group-item-info col-md-4" style="height: 200px">
+                                            <h4 class="list-group-item-heading">Strategy 3</h4>
+                                            <p class="list-group-item-text">Strategy 3
+                                                <span class="list-group-item-text" style="float: right">3</span>
+                                            </p>
+                                        </a>
+                                    </div>
+                                    <div class="row" style="margin: 0px 10px 0px 10px">
+                                        <a class="list-group-item col-md-4" style=" height: 200px">
+                                            <h4 class="list-group-item-heading">Strategy 4</h4>
+                                            <p class="list-group-item-text">Strategy 4
+                                                <span class="list-group-item-text" style="float: right">4</span>
+                                            </p>
+                                        </a>
+                                        <a class="list-group-item list-group-item-danger col-md-4" style=" height: 200px; background-color: #5bc0de">
+                                            <h4 class="list-group-item-heading">Strategy 5</h4>
+                                            <p class="list-group-item-text">Strategy 5
+                                                <span class="list-group-item-text" style="float: right">5</span>
+                                            </p>
+                                        </a>
+                                        <a class="list-group-item col-md-4" style="height: 200px">
+                                            <h4 class="list-group-item-heading">Strategy 6</h4>
+                                            <p class="list-group-item-text">Strategy 6
+                                                <span class="list-group-item-text" style="float: right">6</span>
+                                            </p>
+                                        </a>
+                                    </div>
+                                    <div class="row" style="margin: 0px 10px 0px 10px">
+                                        <a class="list-group-item list-group-item-warning col-md-4" style=" height: 200px">
+                                            <h4 class="list-group-item-heading">Strategy 7</h4>
+                                            <p class="list-group-item-text">Strategy 7
+                                                <span class="list-group-item-text" style="float: right">7</span>
+                                            </p>
+                                        </a>
+                                        <a class="list-group-item col-md-4" style=" height: 200px">
+                                            <h4 class="list-group-item-heading">Strategy 8</h4>
+                                            <p class="list-group-item-text">Strategy 8
+                                                <span class="list-group-item-text" style="float: right">8</span>
+                                            </p>
+                                        </a>
+                                        <a class="list-group-item list-group-item-success col-md-4" style="height: 200px">
+                                            <h4 class="list-group-item-heading">Strategy 9</h4>
+                                            <p class="list-group-item-text">Strategy 9
+                                                <span class="list-group-item-text" style="float: right">9</span>
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-xs-12" style="padding-top: ">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    About Jiugongge
+                                </div>
+                                <div class="panel-footer" style="height: 400px">Introdouction of Jiugongge</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>

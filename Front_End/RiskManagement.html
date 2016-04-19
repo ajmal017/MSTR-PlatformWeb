@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+<title>Market View</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script src="support/jquery/jquery-2.1.0.min.js"></script>
+<link href="support/bootstrap-3.3.5-dist/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+<script src="support/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+<!--        <link rel="stylesheet" href="support/bootstrap-4.0/css/bootstrap.css">
+        <script src="support/bootstrap-4.0/js/bootstrap.js"></script>-->
+
+<link href="support/css/dashboard.css" rel="stylesheet">
+<link href="support/css/RiskManagement.css" rel="stylesheet">
+<!--<link href="support/css/strategy.css" rel="stylesheet">-->
+
+
+<script src="js/Connect.js"></script>
+
+
+
+<script src="js/Connect.js"></script>
+
+
+<script type='text/javascript'>
+
+    $(function() {
+
+        var $div_li = $("div.tab-menu ul li");
+        $div_li.click(function(){
+            $(this).addClass('selected').siblings().removeClass('selected');
+            var index=$div_li.index(this);
+            $("div.tab-box > div").eq(index).addClass('true').siblings().removeClass("true");
+        })
+    })
+
+</script>
+
+
+
+</head>
+<body>
+<nav class="navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Analyse</a>
+        </div>
+        <div class="navbar-form navbar-left">
+            <div class="form-group">
+                <input type="text" id="search"  class="form-control" placeholder="Search">
+            </div>
+            <button id="search-btn" class="btn btn-success">Search</button>
+        </div>
+        <!--                <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="#">Market View</a></li>
+                                <li><a href="#">Strategy</a></li>
+                                <li><a href="#">Trading</a></li>
+                                <li><a href="#">Profolio management</a></li>
+                            </ul>
+
+                        </div>-->
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 col-sm-3 sidebar">
+            <ul id="sidebar" class="nav nav-sidebar">
+              <li><a href="./MarketInfomation.html">Market Information</a></li>
+              <li><a href="./MarketView.html">Market View</a></li>
+              <li><a href="./Strategy.html">Strategy</a></li>
+              <li><a href="./Trading.html">Trading</a></li>
+              <li><a href="./PorfolioManagement.html">Profolio management</a></li>
+              <li><a href="./RiskManagement.html" class="list-group-item active">Risk management</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+            <div class="col-container">
+                <div class="tab-menu">
+                    <ul>
+                        <li class="selected">Var</li>
+                        <li>Greeks</li>
+                        <li>Stress Test</li>
+
+                    </ul>
+                </div>
+                <div class="col-xs-12">
+
+                    <div class="tab-box">
+                        <div class="true" >
+                            <div class="col-xs-13">
+                            <button>数值</button>
+                            <button>signal</button>
+                           </div>
+                        </div>
+                        <div>
+                            <table>
+                                <th>
+                                <td>Maximum</td>
+                                <td>Current</td>
+                                <td>Signal/是否超限</td>
+
+                                </th>
+                                <tr>
+                                    <td>Delta</td>
+                                    <td>0.34</td>
+                                    <td>0.38</td>
+                                    <td>否</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Gamma</td>
+                                    <td>0.34</td>
+                                    <td>0.38</td>
+                                    <td>否</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Vega</td>
+                                    <td>0.34</td>
+                                    <td>0.38</td>
+                                    <td>否</td>
+                                </tr>
+                                <tr>
+                                    <td>Theta</td>
+                                    <td>0.34</td>
+                                    <td>0.38</td>
+                                    <td>否</td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+
+                        <div>
+                           <p>Wanted Index:<input type="number"/></p>
+                            <table>
+                                <th>
+                                <td>Maximum</td>
+                                <td>Current</td>
+                                <td>Signal/是否超限</td>
+
+                                </th>
+                                <tr>
+                                    <td>Delta</td>
+                                    <td>0.34</td>
+                                    <td>0.38</td>
+                                    <td>否</td>
+
+                                </tr>
+                                </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

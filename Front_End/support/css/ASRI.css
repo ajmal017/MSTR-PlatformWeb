@@ -1,0 +1,111 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 8, 2016, 8:54:51 PM
+    Author     : Cheney
+*/
+
+body{
+    margin-bottom: 40px;
+    background-color: #f2f2f2;
+    /*font-family: "Lato";*/
+    font-weight: 300;
+    font-size: 16px;
+    color: #555;
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 70px;
+}
+
+a {
+    color: #f85c37;
+    word-wrap: break-word;
+
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 30px;
+    padding-top: 15px;
+    padding-bottom: 0px;
+}
+
+.navbar {
+    
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* background-color: #ffffff; */
+}
+
+#news-container {
+    text-align: center;
+}
+
+#news-container i {
+    font-size: 36px;
+    margin: 8px;
+    cursor: pointer;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+#news-container i:hover {
+    color: transparent;
+}
+
+#news-container li {
+    color: #4e4e4e;
+    background: transparent;
+    overflow: hidden;
+    height: 50px;
+    padding: 10px;
+    line-height: 30px;
+    list-style: none;
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 1px dotted #2c8162;
+}
+
+#news-container li:hover {
+    background: transparent;
+}
+
+.side {
+    padding: 20px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+@media (min-width: 768px) {
+    .main {
+        padding-top: 20px;
+        padding-right: 15px;
+        padding-left: 40px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .side{
+        display:none
+    }
+
+
+}
+@media screen and (min-width: 768px) {
+    .nav-collapse{
+        display:none
+    }
+}
+.shadow{
+    box-shadow: 5px 5px 1px #cccccc;
+}
